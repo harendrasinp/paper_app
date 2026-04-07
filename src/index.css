@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 220 25% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 10%;
+
+    --primary: 220 70% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 15% 92%;
+    --secondary-foreground: 220 25% 15%;
+
+    --muted: 220 15% 94%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 16 80% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 220 70% 50%;
+
+    /* --radius: 0.5rem; */
+
+    --paper: 40 30% 97%;
+    --paper-border: 220 15% 80%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+     font-family: Cambria, serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+     font-family: Cambria, serif;
+  }
+}
+
+@media print {
+  body {
+    background: white !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-area {
+    box-shadow: none !important;
+    border:5px double black !important;
+    margin:20 !important;
+    padding:20px !important;
+  }
+}

@@ -67,7 +67,7 @@
   }
 }
 
-@media print {
+/* @media print {
   body {
     background: white !important;
   }
@@ -79,5 +79,40 @@
     border:5px double black !important;
     margin:20 !important;
     padding:20px !important;
+  }
+} */
+
+@media print {
+
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+
+  body {
+    background: white !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  /* REMOVE old border */
+  .print-area {
+    margin-top:5mm !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* THIS CREATES BORDER ON EVERY PAGE */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 10mm;
+    left: 10mm;
+    right: 10mm;
+    bottom: 10mm;
+    border: 5px double black;
+    pointer-events: none;
   }
 }

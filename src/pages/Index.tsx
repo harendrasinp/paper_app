@@ -4,17 +4,21 @@ import { Printer, FileText } from "lucide-react";
 import PaperForm from "@/components/PaperForm";
 import QuestionBuilder from "@/components/QuestionBuilder";
 import PaperPreview from "@/components/PaperPreview";
-
+import html2pdf from "html2pdf.js"
 const Index = () => {
-  const getFormattedDate = () => {
-    const date = new Date();
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
+const downloadPDF = () => {
+  const element = document.querySelector(".print-area");
 
-    return `${day}/${month}/${year}`;
+  const opt = {
+    margin: 10,
+    filename: "question-paper.pdf",
+    image: { type: "jpeg" as const, quality: 1 }, // ✅ fix
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
   };
-
+// @ts-ignore
+  html2pdf().set(opt).from(element).save();
+};
   const [paperInfo, setPaperInfo] = useState({
     schoolName: "",
     examName: "",
@@ -42,6 +46,11 @@ const Index = () => {
             <h1 className="font-display text-lg font-bold text-foreground">
               Question Paper Generator
             </h1>
+          </div>
+          <div className="mb-3 text-right">
+            <Button onClick={downloadPDF}>
+              Download PDF
+            </Button>
           </div>
           <Button onClick={handlePrint} className="gap-2">
             <Printer className="h-4 w-4" /> Print Paper

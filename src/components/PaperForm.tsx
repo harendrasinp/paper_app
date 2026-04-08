@@ -5,21 +5,18 @@ const PaperForm = ({ paperInfo, setPaperInfo }) => {
   const handleChange = (field, value) => {
     setPaperInfo((prev) => ({ ...prev, [field]: value }));
   };
+  const formatInputDate = (value) => {
+    if (!value) return "";
+
+    const [year, month, day] = value.split("-");
+    return `${day}/${month}/${year}`;
+  };
 
   return (
     <div className="space-y-4">
       <h2 className="font-display text-xl font-bold text-foreground">Paper Details</h2>
-      
+
       <div className="grid grid-cols-1 gap-3">
-        {/* <div>
-          <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">School Name</Label>
-          <Input
-            value={paperInfo.schoolName}
-            onChange={(e) => handleChange("schoolName", e.target.value)}
-            placeholder="e.g. Delhi Public School"
-            className="mt-1"
-          />
-        </div> */}
         <div>
           <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Exam Name</Label>
           <Input
@@ -43,9 +40,16 @@ const PaperForm = ({ paperInfo, setPaperInfo }) => {
             <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Date</Label>
             <Input
               type="date"
-              value={paperInfo.date}
-              onChange={(e) => handleChange("date", e.target.value)}
-              className="mt-1"
+              value={paperInfo.rawDate}
+              onChange={(e) => {
+                const raw = e.target.value;
+
+                setPaperInfo({
+                  ...paperInfo,
+                  rawDate: raw,
+                  date: formatInputDate(raw), // 👈 yaha convert
+                });
+              }}
             />
           </div>
           <div>

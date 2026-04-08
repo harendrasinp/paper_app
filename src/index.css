@@ -67,20 +67,6 @@
   }
 }
 
-/* @media print {
-  body {
-    background: white !important;
-  }
-  .no-print {
-    display: none !important;
-  }
-  .print-area {
-    box-shadow: none !important;
-    border:5px double black !important;
-    margin:20 !important;
-    padding:20px !important;
-  }
-} */
 
 @media print {
 
